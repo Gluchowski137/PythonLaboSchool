@@ -152,7 +152,7 @@ def quest5():
     skrzynia.append("prowiant")
     from_chess_to_eq()
     print(len(ekwipunek), ekwipunek)
-    statystyki = [100,50,20] #hp,ATACK,armor
+    statystyki = [100, 50, 20]  # hp,ATACK,armor
     print(f"Twoje statystyiki HP|ATACK|ARMOR wynoszą: {statystyki}")
     print("Zakładasz zbroje i tarczę")
     ekwipunek.remove("zbroja")
@@ -160,7 +160,8 @@ def quest5():
     statystyki[2] = 65
     print(len(ekwipunek), ekwipunek)
     print(f"HP|ATACK|ARMOR: {statystyki}")
-    print(f"Spotykasz kupca! Kup jeden z jego przedmiotów za swoje złoto!\nPrzedmioty Kupca:\nMagiczny Grzyb\nPuszka\nStara waza")
+    print(
+        f"Spotykasz kupca! Kup jeden z jego przedmiotów za swoje złoto!\nPrzedmioty Kupca:\nMagiczny Grzyb\nPuszka\nStara waza")
     kupiony_przedmiot = input("Wybieram przedmiot o nazwie: ")
     if kupiony_przedmiot == "Magiczny Grzyb":
         ekwipunek.append("Magiczny Grzyb")
@@ -180,7 +181,7 @@ def quest5():
     ekwipunek.remove("miecz")
     statystyki[1] += 50
     print(f"HP|ATACK|ARMOR: {statystyki}")
-    print("Bierzesz do reki" , kupiony_przedmiot)
+    print("Bierzesz do reki", kupiony_przedmiot)
 
     if "Puszka" in ekwipunek:
         print("W puszce były złe moce! Umierasz.")
@@ -194,6 +195,7 @@ def quest5():
         print("Wpada na Ciebie ładna pani po podniesieniu się zauważasz,że straciłeś złoto!")
         ekwipunek.remove("złoto")
         print(len(ekwipunek), ekwipunek)
+
 
 def quest6():
     def srednia(oceny):
@@ -379,14 +381,15 @@ def quest9():
     else:
         print("W bazie nie ma przlewu o podanej wartosci!")
 
+
 def quest10():
-    imiona_zenskie = ["Gabi","Maria","Gosia","Ewa","Kasia","Magda"]
-    imiona_meskie = ["Max","Kuba","Krzysztof","Robert","Adam", "Wojtek"]
+    imiona_zenskie = ["Gabi", "Maria", "Gosia", "Ewa", "Kasia", "Magda"]
+    imiona_meskie = ["Max", "Kuba", "Krzysztof", "Robert", "Adam", "Wojtek"]
     imiona_zenskie.append("Dorota")
     imiona_zenskie.append("Ania")
     imiona_zenskie.append("Teresa")
-    imiona_meskie.insert(1,"Michal")
-    imiona_meskie.insert(2,"Lukasz")
+    imiona_meskie.insert(1, "Michal")
+    imiona_meskie.insert(2, "Lukasz")
     imiona_zenskie.sort()
     imiona_meskie.sort()
     print(f"{imiona_zenskie}\n{imiona_meskie}")
@@ -405,4 +408,3 @@ def quest10():
     imiona.sort()
     imiona.pop(2)
     print(imiona)
-
