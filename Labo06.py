@@ -1,4 +1,6 @@
-def quest1():
+# Tuple
+
+def quest_t_1():
     oceny = (3, 3, 4, 4.5, 5, 2, 2, 2)
     srednia = 0
     for ocena in oceny:
@@ -16,7 +18,7 @@ def quest1():
         print("Nie mozna miec takiej oceny!")
 
 
-def quest2():
+def quest_t_2():
     przedmioty_semestr_zimowy = (
         "Computer architecture", "Computer networks and Internet", "Introduction to computer science",
         "Introduction to differential and integral calculus", "Linear algebra", "Logic", "Spanish",
@@ -54,7 +56,7 @@ def quest2():
         print(f"Przedmiot {przedmiot_do_sprawdzenia} nie występuje przynajmniej 2 razy!")
 
 
-def quest3():
+def quest_t_3():
     studenci = ("Gluchowski", "Arseniuk", "Kowalski", "Nowak", "Krab", "Nowak")
     print(studenci)
     print(f"Liczba studentów na roku wynosi {len(studenci)} osób")
@@ -64,7 +66,9 @@ def quest3():
     del studenci
 
 
-def quest4():
+# Set
+
+def quest_s_1():
     biblioteka_gier = {"miencraft", "cs", "lol", "nostale", "metin2"}
     gry_w_koszyku = {"Simsy", "Terraria", "The forest", "Wiedzmin"}
     gry_w_koszyku.update(["New world", "black desert", "Sacred", "Diablo"])
@@ -102,3 +106,89 @@ def quest4():
     for game in gry_w_koszyku.difference(gry_w_promocji):
         gry_w_koszyku.remove(game)
 
+
+def quest_s_2():
+    owoce = {"jabłko", "pomarańcza", "banan"}
+    warzywa = {"ogórek", "sałata", "marchewka"}
+    print(f"Owoce:{owoce}\nWarzywa:{warzywa}")
+    warzywniak = owoce.union(warzywa)
+    lista_zakupow = {"banan", "rzodkiew", "granat"}
+    for produkt in lista_zakupow:
+        if produkt not in warzywniak:
+            print(f"Brak {produkt} w warzywniaku")
+
+    lista_zakupow.remove("rzodkiew")
+    lista_zakupow.remove("granat")
+    lista_zakupow.add("ogórek")
+    lista_zakupow.add("banan")
+    for produkt in warzywniak:
+        if produkt in lista_zakupow:
+            lista_zakupow.remove(produkt)
+    lista_zakupow.clear()
+    lista_zakupow.update({"Arbuz", "kokos", "wiśnie"})
+    print(f"Produkty na liscie zakupów:{lista_zakupow}")
+    nowe_owoce = {"cytryna", "limonka"}
+    nowe_warzywa = {"batat", "ziemniak"}
+    warzywniak.update(nowe_warzywa, nowe_owoce)
+    for produkt in lista_zakupow:
+        if produkt not in warzywniak:
+            print(f"Brak {produkt} w warzywniaku")
+    for produkt in warzywniak:
+        if produkt in lista_zakupow:
+            lista_zakupow.remove(produkt)
+    zapotrzebowanie = lista_zakupow
+    warzywniak.update(zapotrzebowanie)
+    warzywniak.pop()
+
+    lista_zakupow.update({"Arbuz", "ogórek", "czereśnie"})
+
+    lista_zakupow.difference_update(warzywniak)
+
+    wybrany_owoc_warzywo = input("Podaj nazwe owocu lub warzywa,aby sprawdzić czy jest w warzywniaku:")
+    if wybrany_owoc_warzywo in warzywniak:
+        print(f"{wybrany_owoc_warzywo} jest w warzywniaku")
+    else:
+        print(f"{wybrany_owoc_warzywo} nie jest w warzywniaku")
+
+
+# Vocabulary
+
+def quest_v_1():
+    def find_key_for_value(vocabulary, given_value):
+        for key, value in vocabulary.items():
+            if value == given_value:
+                return key
+
+    skojarzenia = {"wina": "kłopoty", "świnia_1": "zwierze", "brak reakcji": "brak słów",
+                   "świnia_2": "Osoba niskiej kultury", "Placz": "smark"}
+
+    rymy = {"wina": "świnia", "pochmurnie": "w urnie", "męka": "wstęga", "oddech": "ech"}
+
+    skojarzenia.update({"kolor": "uczcucie", "ex_1": "wróg", "ex_2": "była"})
+    rymy.update({"przesmutek": "upadek", "łamać": "wstawać", "krzyk": "ryk"})
+
+    for skojarzenie_1, skojarzenie_2 in skojarzenia.items():
+        print(f"Słowo | {skojarzenie_1} | ma powiązanie ze słowem | {skojarzenie_2} |")
+
+    for rym_1, rym_2 in rymy.items():
+        print(f"Słowo | {rym_1} | rymuje się ze słowem | {rym_2} |")
+
+    skojarzenie_uzytkownika = input("Podaj słowo by podać jego skojarzenie, które znajduje się bazie: ")
+    if skojarzenie_uzytkownika in skojarzenia:
+        print(f"Skojarzeniem do słowa {skojarzenie_uzytkownika} jest {skojarzenia.get(skojarzenie_uzytkownika)}")
+    elif skojarzenie_uzytkownika in skojarzenia.values():
+        print(
+            f"Skojarzeniem do słowa {skojarzenie_uzytkownika} jest {find_key_for_value(skojarzenia, skojarzenie_uzytkownika)} ")
+    else:
+        print(f"Nie ma skojarzenia do słowa {skojarzenie_uzytkownika} w bazie")
+
+    rym_uzytkownika = input("Podaj słowo by podać rym, który znajduje się w bazie: ")
+    if rym_uzytkownika in rymy:
+        print(f"Rymem do słowa {rym_uzytkownika} jest {rymy.get(rym_uzytkownika)}")
+    elif rym_uzytkownika in rymy.values():
+        print(f"Rymem do słowa {rym_uzytkownika} jest {find_key_for_value(rymy, rym_uzytkownika)}")
+    else:
+        print(f"Nie ma rymu do słowa {rym_uzytkownika} w bazie")
+
+
+quest_s_2()
