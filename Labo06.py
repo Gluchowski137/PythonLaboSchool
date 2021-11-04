@@ -191,4 +191,3 @@ def quest_v_1():
         print(f"Nie ma rymu do słowa {rym_uzytkownika} w bazie")
 
 
-quest_s_2()
