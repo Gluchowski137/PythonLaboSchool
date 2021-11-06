@@ -437,7 +437,28 @@ def quest_v_7():
                  "HondaCBR": {"marka": "Honda", "model": "CBR", "pojemnosc silnika": 600}}
 
     print(
-        f" Honda Model:{motocykle.get('HondaCBR').get('model')} Pojemność:{motocykle.get('HondaCBR').get('pojemnosc silnika')}")
+        f"Honda Model:{motocykle.get('HondaCBR').get('model')} Pojemność:{motocykle.get('HondaCBR').get('pojemnosc silnika')}")
+
+    motocykle.update({"HondaCBR_v2": {"marka": "Honda", "model": "CBR_v2", "pojemnosc silnika": 1000},
+                      "HondaCBD": {"marka": "Honda", "model": "CBD", "pojemnosc silnika": 420}})
+
+    for motocykl in motocykle.values():
+        if motocykl["marka"] == "Suzuki":
+            print(motocykl["model"])
+
+    samochody = {"KIAPicanto": {"marka": "KIA", "model": "Picanto", "pojemnosc silnika": 2000},
+                 "KIAPicanto2": {"marka": "KIA", "model": "Picanto2", "pojemnosc silnika": 2200},
+                 "HondaRBC": {"marka": "Honda", "model": "RBC", "pojemnosc silnika": 3300}}
+
+    print(
+        f"Honda Model:{samochody.get('HondaRBC').get('model')} Pojemność:{samochody.get('HondaRBC').get('pojemnosc silnika')}")
+
+    samochody.update({"BMW1": {"marka": "BMW", "model": "1", "pojemnosc silnika": 3000},
+                      "BMW3": {"marka": "BMW", "model": "3", "pojemnosc silnika": 5000}})
+
+    for samochod in samochody.values():
+        if samochod["marka"] == "KIA":
+            print(samochod["model"])
 
 
 def quest_v_8():
@@ -473,4 +494,47 @@ def quest_v_10():
 
 
 def quest_v_11():
-     pass
+    studenci = {}
+    for ilosc_studentow in range(15):
+        indeks = random.randint(1000000, 9999999)
+        if indeks not in studenci:
+            studenci.update({indeks: round(random.uniform(1, 6), 2)})
+    powyzej_4 = 0
+    for ocena in studenci.values():
+        if ocena > 4:
+            powyzej_4 += 1
+    nowi_studenci = {}
+    for ilosc_studentow in range(15):
+        indeks = random.randint(1000000, 9999999)
+        if indeks not in nowi_studenci and indeks not in studenci:
+            nowi_studenci.update({indeks: round(random.uniform(1, 6), 2)})
+
+    studenci.update(nowi_studenci)
+    srednia = 0
+    for ocena in studenci.values():
+        srednia += ocena
+
+    srednia /= len(studenci.values())
+    print(round(srednia, 2))
+    print(studenci)
+
+    indeks_od_uzytkownika = int(input("Podaj indeks by sprawdzic srednia:"))
+    if indeks_od_uzytkownika in studenci.keys():
+        print(f"Srednia studenta o indeksie {indeks_od_uzytkownika} wynosi {studenci.get(indeks_od_uzytkownika)}")
+    else:
+        print(f"Nie ma studenta o nr idneksu {indeks_od_uzytkownika}")
+
+    for x in range(2):
+        studenci.pop(random.choice(list(studenci.keys())))
+
+    for indeks, srednia in studenci.items():
+        print(f"Srednia studenta o indeksie {indeks} wynosi {srednia}")
+
+
+def quest_v_12():
+    potegi = {}
+    n = int(input("Podaj N:"))
+    for x in range(10):
+        potegi.update({(x + 1) ** 1 - n: (x + 1) ** 2})
+
+    print(potegi)
