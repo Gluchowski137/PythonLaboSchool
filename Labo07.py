@@ -155,3 +155,39 @@ def quest12():
             return "Błędne hasło"
 
     print(sprawdz_hasslo("admin"))
+
+
+def quest13():
+    def suma_liczb(liczby):
+        suma = 0
+        for liczba in liczby:
+            suma += liczba
+        return suma
+
+    print(suma_liczb([2, 3, 1]))
+
+
+def quest14():
+    def suma_liczb(liczby):
+        suma = 0
+        for liczba in liczby:
+            suma += liczba
+        return suma, len(liczby)
+
+    def srednia(suma, ilosc_liczb):
+        return suma / ilosc_liczb
+
+    print(srednia(suma_liczb([2, 3, 1])[0], suma_liczb([2, 3, 1])[1]))
+
+
+quest14()
+
+
+def quest15():
+    def suma_liczb(*liczby):
+        suma = 0
+        for liczba in liczby:
+            suma += liczba
+        return suma
+
+    print(suma_liczb(2, 3, 1))
