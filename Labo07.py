@@ -82,3 +82,45 @@ def quest6():
             return f"Prędkosc ruchu wynosi 0"
 
     print(predkosc_ruchu(5, 1))
+
+
+def quest7():
+    def wymiana_naklejek(naklejki):
+        if naklejki >= 60:
+            print("Możesz wymienić naklejki na dowolną maskotkę")
+        elif 40 <= naklejki < 60:
+            print("Możesz wymienić naklejki na mini maskotkę")
+            print(f"Musisz uzbierać jeszcze {60 - naklejki} naklejek do dużej maskotki")
+        elif 0 <= naklejki < 40:
+            print(f"Musisz uzbierać jeszcze {40 - naklejki} naklejek do mini maskotki")
+            print(f"Musisz uzbierać jeszcze {60 - naklejki} naklejek do dużej maskotki")
+        else:
+            print("Liczba naklejek nie może być ujemna")
+
+    wymiana_naklejek(50)
+
+
+def quest8():
+    def polis(mieszkancy):
+        if mieszkancy == 5040:
+            return "Idealnie!"
+        elif mieszkancy < 5040:
+            return "Za mało mieszkańców"
+        else:
+            return "Za dużo mieszkańców"
+
+    print(polis(5041))
+
+
+def quest9():
+    def slowo(*slowa):
+        najdluzsze = ["", 0]
+        najkrotsze = ["", 999999]
+        for slowo in slowa:
+            if len(slowo) > najdluzsze[1]:
+                najdluzsze = [slowo, len(slowo)]
+            if len(slowo) < najkrotsze[1]:
+                najkrotsze = [slowo, len(slowo)]
+        return [najkrotsze[0], najdluzsze[0]]
+
+    print(slowo("elo", "ola", "hahahahahah", "Kamil"))
