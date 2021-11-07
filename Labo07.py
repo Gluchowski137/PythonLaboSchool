@@ -124,3 +124,34 @@ def quest9():
         return [najkrotsze[0], najdluzsze[0]]
 
     print(slowo("elo", "ola", "hahahahahah", "Kamil"))
+
+
+def quest10():
+    def wymien_walute(PLN=1):
+        return [f"EUR: {PLN * 4.6}", f"GBP:{PLN * 5.3}", f"USD: {PLN * 3.9}", f"CHF: {PLN * 4.3}", f"AUD: {PLN * 2.9}",
+                f"JPY: {PLN * 3.5}"]
+
+    print(wymien_walute(30))
+
+
+def quest11():
+    def zwroc_pierwsza_ujemna(liczby):
+        for liczba in liczby:
+            if liczba < 0:
+                return liczba
+        return 0
+
+    print(zwroc_pierwsza_ujemna([3, 0, 4, 3]))
+
+
+def quest12():
+    global poprawne_haslo
+    poprawne_haslo = "admin"
+
+    def sprawdz_hasslo(haslo):
+        if haslo == poprawne_haslo:
+            return "Zalgowano"
+        else:
+            return "Błędne hasło"
+
+    print(sprawdz_hasslo("admin"))
