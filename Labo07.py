@@ -180,9 +180,6 @@ def quest14():
     print(srednia(suma_liczb([2, 3, 1])[0], suma_liczb([2, 3, 1])[1]))
 
 
-quest14()
-
-
 def quest15():
     def suma_liczb(*liczby):
         suma = 0
@@ -191,3 +188,30 @@ def quest15():
         return suma
 
     print(suma_liczb(2, 3, 1))
+
+
+def quest16():
+    def stypendium(lista, liczba):
+        return [powyzej for powyzej in lista if powyzej >= liczba]
+
+    print(f"{len(stypendium([3.5, 4.2, 4.1, 5.3, 5, 1, 3], 4))} studentów kwalifikuje się do stypendium naukowego")
+
+
+def quest17():
+    def czy_jest(zbior1, zbior2):
+        for x in zbior1:
+            if x in zbior2:
+                print(f"{x} jest w 2 zbiorze")
+
+    czy_jest(("jeden", "jabłko", "kisiel", "15"), ("jabłko", "kisiel", "ziemniak"))
+
+
+def quest18():
+    def przywitanie(godnosci):
+        for godnosc in godnosci:
+            print(f"Hej {godnosc}")
+
+    przywitanie(["Maciek", "Sławek", "Nowak", "Kowalski"])
+
+
+quest18()
