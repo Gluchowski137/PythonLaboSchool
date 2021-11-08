@@ -538,5 +538,3 @@ def quest_v_12():
         potegi.update({(x + 1) ** 1 - n: (x + 1) ** 2})
 
     print(potegi)
-
-quest_v_5()
