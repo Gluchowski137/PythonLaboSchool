@@ -214,4 +214,48 @@ def quest18():
     przywitanie(["Maciek", "Sławek", "Nowak", "Kowalski"])
 
 
-quest18()
+def quest19():
+    def kwoty_faktury(lista, liczba=100):
+        return [kwota for kwota in lista if kwota > liczba]
+
+    faktura = [101, 200, 300, 87, 13, 41, 300, 14, 124]
+
+    print(kwoty_faktury(faktura))
+
+
+def quest20():
+    def dodatnie(liczby):
+        for liczba in liczby:
+            if liczba < 0:
+                return False
+        return True
+
+    lista_liczb = [1, 2, 3, 4, 5, 4, 2]
+
+    print(dodatnie(lista_liczb))
+
+
+def quest21():
+    def do_10_znakow(*slowa):
+        return [slowo for slowo in slowa if len(slowo) <= 10]
+
+    print(do_10_znakow("siema", "hahahahahaha", "trzy", "1234567891011"))
+
+
+def quest22():
+    def bilet_pkp(kilometry=0):
+        if kilometry <= 10:
+            return f"Bilet kosztuje 20 zł"
+        if 11 <= kilometry <= 30:
+            return f"Bilet kosztuje {10 + 0.10 * kilometry} zł"
+        if kilometry > 30:
+            return f"Bilet kosztuje {1 + 0.8 * kilometry} zł"
+
+    print(bilet_pkp(25))
+
+
+def quest23():
+    def zwroc_nieparzyste(liczby):
+        return [liczba for liczba in liczby if liczba < 0]
+
+    print(zwroc_nieparzyste([-1, 4, 3, -2, 3, 1, -23, 41]))
