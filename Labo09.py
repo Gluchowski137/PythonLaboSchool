@@ -130,4 +130,163 @@ def quest1():
     Wagon.usun_pasazera(wagony[Pasazer.zwroc_numer_wagonu(pasazer1) - 1], pasazer3)
 
 
-quest1()
+def quest2():
+    class Samolot:
+        liczba_samolotow = 0
+
+        def __init__(self, nr_id, maks_miejsc_1_klasa=40, maks_miejsc_2_klasa=120):
+            self.lista_pasazerow_1_klasa = []
+            self.lista_pasazerow_2_klasa = []
+            self.maks_miejsc_1_klasa = maks_miejsc_1_klasa
+            self.maks_miejsc_2_klasa = maks_miejsc_2_klasa
+            self.nr_id = nr_id
+            self.lista_wolnych_miejsc_1kl = [miejsce for miejsce in range(1, self.maks_miejsc_1_klasa)]
+            self.lista_wolnych_miejsc_2kl = [miejsce for miejsce in range(1, self.maks_miejsc_2_klasa)]
+            self.liczba_samolotow += 1
+
+        def wyswietl_dostepne_miesjca_1kl(self):
+            self.lista_wolnych_miejsc_1kl.sort()
+            print(self.lista_wolnych_miejsc_1kl)
+
+        def wyswietl_dostepne_miesjca_2kl(self):
+            self.lista_wolnych_miejsc_2kl.sort()
+            print(self.lista_wolnych_miejsc_2kl)
+
+        def zwroc_ile_zajetych_1kl(self):
+            return len(self.lista_pasazerow_1_klasa)
+
+        def zwroc_ile_zajetych_2kl(self):
+            return len(self.lista_pasazerow_2_klasa)
+
+        def zwroc_miesjce_1kl(self):
+            return random.choice(self.lista_wolnych_miejsc_1kl) if self.podaj_czy_wolne_miejsca_1kl() else -1
+
+        def zwroc_miesjce_2kl(self):
+            return random.choice(self.lista_wolnych_miejsc_2kl) if self.podaj_czy_wolne_miejsca_2kl() else -1
+
+        def dodaj_pasazera(self, pasazer):
+            if pasazer.klasa == 1:
+                self.lista_pasazerow_1_klasa.append(pasazer)
+                self.lista_wolnych_miejsc_1kl.remove(pasazer.miejsce)
+            else:
+                self.lista_pasazerow_2_klasa.append(pasazer)
+                self.lista_wolnych_miejsc_2kl.remove(pasazer.miejsce)
+
+        def __str__(self):
+            return f"{self.nr_id} Wszyskie miesjca:{len(self.lista_pasazerow_1_klasa) + len(self.lista_pasazerow_2_klasa)} Zajete: 1klasa{len(self.lista_pasazerow_1_klasa)} 2klasa {len(self.lista_pasazerow_2_klasa)} Wolne: 1klasa {len(self.lista_wolnych_miejsc_1kl)} 2klasa {len(self.lista_wolnych_miejsc_2kl)}"
+
+        def wyswietl_pasazerow_1kl(self):
+            print([pasazer.imie for pasazer in self.lista_pasazerow_1_klasa])
+
+        def wyswietl_pasazerow_2kl(self):
+            print([pasazer.imie for pasazer in self.lista_pasazerow_2_klasa])
+
+        def wyswietl_pasazerow(self):
+            print([pasazer.imie for pasazer in self.lista_pasazerow_1_klasa],
+                  [pasazer.imie for pasazer in self.lista_pasazerow_2_klasa])
+
+        def podaj_czy_wolne_miejsca_1kl(self):
+            return True if len(self.lista_wolnych_miejsc_1kl) != 0 else False
+
+        def podaj_czy_wolne_miejsca_2kl(self):
+            return True if len(self.lista_wolnych_miejsc_2kl) != 0 else False
+
+        def czy_wolne(self, nr, klasa):
+            if klasa == 1:
+                return True if nr in self.lista_wolnych_miejsc_1kl else False
+            else:
+                return True if nr in self.lista_wolnych_miejsc_2kl else False
+
+        def usun_pasazera(self, pasazer):
+            if pasazer.klasa == 1:
+                self.lista_pasazerow_1_klasa.remove(pasazer)
+                self.lista_wolnych_miejsc_1kl.append(pasazer.miejsce)
+            else:
+                self.lista_pasazerow_2_klasa.remove(pasazer)
+                self.lista_wolnych_miejsc_2kl.append(pasazer.miejsce)
+
+        def __del__(self):
+            print("Wywołano destruktor dla Samolot")
+
+    class PasazerSamolotu:
+        def __init__(self, imie, nazwisko, miejsce, klasa, samolot):
+            self.imie = imie
+            self.nazwisko = nazwisko
+            self.miejsce = miejsce
+            self.klasa = klasa
+            self.samolot = samolot
+            Samolot.dodaj_pasazera(samolot, self)
+
+        def zwroc_numer_miejsca(self):
+            return self.miejsce
+
+        def __str__(self):
+            return self.imie, self.nazwisko, "Miejsce", self.miejsce, "Klasa", self.klasa
+
+        def __del__(self):
+            print("Wywołano destruktor dla PasażerSamolotu")
+
+    class Lot:
+
+        def __init__(self, cena_klasa_1, cena_klasa_2):
+            self.cena_klasa_1 = cena_klasa_1
+            self.cena_klasa_2 = cena_klasa_2
+            self.samoloty = []
+            self.przychod_za_lot = 0
+            self.wszyscy_pasazerowie = []
+
+        def oblicz_cene_biletu(self, pasazer):
+            if pasazer.klasa == 1:
+                print(f"Pasazer {pasazer.imie} {pasazer.nazwisko} musi zaplaci {self.cena_klasa_1} zł za bilet")
+                return self.cena_klasa_1
+            else:
+                print(f"Pasazer {pasazer.imie} {pasazer.nazwisko} musi zaplaci {self.cena_klasa_2} zł za bilet")
+                return self.cena_klasa_2
+
+        def zwroc_pasazera_o_imieniu_i_nazwisku(self, imie, nazwisko):
+            for pasazer in self.wszyscy_pasazerowie:
+                if pasazer.imie == imie and pasazer.nazwisko == nazwisko:
+                    return pasazer
+
+        def ile_samolotow(self):
+            print(len(self.samoloty))
+
+        def stworz_samolot(self, nr_id, maks_miejsc_1_klasa=40, maks_miejsc_2_klasa=120):
+            self.samoloty.append(Samolot(nr_id, maks_miejsc_1_klasa, maks_miejsc_2_klasa))
+
+        def stworz_pasazera_samolotu(self, imie, nazwisko, miejsce, klasa, samolot):
+            self.wszyscy_pasazerowie.append(
+                PasazerSamolotu(imie, nazwisko, miejsce, klasa, self.zwroc_samolot_po_nr_id(samolot)))
+
+        def usun_pasazera(self, pasazer):
+            Samolot.usun_pasazera(pasazer.samolot, pasazer)
+            self.wszyscy_pasazerowie.remove(pasazer)
+
+        def zwroc_przychod_za_lot(self):
+            for pasazer in self.wszyscy_pasazerowie:
+                self.przychod_za_lot += self.oblicz_cene_biletu(pasazer)
+            return self.przychod_za_lot
+
+        def zwroc_samolot_po_nr_id(self, nr_id):
+            for samolot in self.samoloty:
+                if samolot.nr_id == nr_id:
+                    return samolot
+
+        def __del__(self):
+            print("Wywołano destruktor dla Lot")
+
+    lot = Lot(500, 100)
+    lot.stworz_samolot(320)
+    lot.stworz_samolot(123)
+    lot.stworz_pasazera_samolotu("wojtek", "Kowalski", 3, 1, 320)
+    lot.stworz_pasazera_samolotu("robert", "walski", 5, 2, 123)
+    lot.stworz_pasazera_samolotu("kamil", "alski", 3, 2, 320)
+    lot.stworz_pasazera_samolotu("Stasiek", "Kowal", 4, 1, 123)
+    print(lot.zwroc_przychod_za_lot())
+    lot.oblicz_cene_biletu(lot.zwroc_pasazera_o_imieniu_i_nazwisku("kamil", "alski"))
+    lot.ile_samolotow()
+    Samolot.wyswietl_pasazerow_1kl(lot.zwroc_samolot_po_nr_id(123))
+    Samolot.wyswietl_pasazerow(lot.zwroc_samolot_po_nr_id(320))
+    print(Samolot.czy_wolne(lot.zwroc_samolot_po_nr_id(320), 4, 2))
+    lot.usun_pasazera(lot.zwroc_pasazera_o_imieniu_i_nazwisku("Stasiek", "Kowal"))
+    Samolot.wyswietl_dostepne_miesjca_1kl(lot.zwroc_samolot_po_nr_id(123))
