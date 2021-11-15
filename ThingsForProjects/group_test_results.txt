@@ -1,0 +1,3 @@
+GroupA:MEAN 59.34 Students: 29
+GroupB:MEAN 53.58 Students: 31
+GroupC:MEAN 43.3 Students: 40
